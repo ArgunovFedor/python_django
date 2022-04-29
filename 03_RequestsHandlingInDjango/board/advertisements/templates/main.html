@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+  <p>Выберите:</p>
+  <div>
+    {% for category in categories %}
+        <input type="radio" id="{{category}}"
+         name="category" value="{{category}}">
+        <label for="{{category}}">{{category}}</label>
+    {% endfor %}
+  </div>
+  <div>
+    {% for region in regions %}
+        <input type="radio" id="{{region}}"
+         name="region" value="{{region}}">
+        <label for="{{region}}">{{region}}</label>
+    {% endfor %}
+  <p><input type="text" name="text" placeholder="Введите текст" size="18" /></p>
+  <input type="submit" value="Найти" >
+</form>
+</body>
+</html>
