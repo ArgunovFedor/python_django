@@ -1,0 +1,12 @@
+<h1>Случайное обьявление:</h1>
+<h2>{{random_advertisement.title}}</h2>
+<p>{{random_advertisement.description}}</p>
+<p>{{random_advertisement.created_at}}</p>
+<p>{{random_advertisement.updated_at}}</p>
+
+{%for advertisement in advertisements%}
+    <h2>{{advertisement.title}}</h2>
+    <p>{{advertisement.description}}</p>
+    <p>{{advertisement.created_at}}</p>
+    <p>{{advertisement.updated_at}}</p>
+{%endfor%}
