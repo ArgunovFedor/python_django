@@ -1,12 +1,15 @@
-<h1>Случайное обьявление:</h1>
-<h2>{{random_advertisement.title}}</h2>
-<p>{{random_advertisement.description}}</p>
-<p>{{random_advertisement.created_at}}</p>
-<p>{{random_advertisement.updated_at}}</p>
+<h1>Бесплатные обьявления</h1>
 
-{%for advertisement in advertisements%}
-    <h2>{{advertisement.title}}</h2>
-    <p>{{advertisement.description}}</p>
-    <p>{{advertisement.created_at}}</p>
-    <p>{{advertisement.updated_at}}</p>
-{%endfor%}
+{% if advertisement_list %}
+<ul>
+    {%for advertisement in advertisement_list%}
+    <li>
+    <a href="/advertisements/{{ advertisement.id }}">{{ advertisement.title }}</a>
+    <p>Цена - {{advertisement.price}}</p>
+    <p>Наименование рубрики - {{advertisement.type}}</p>
+    </li>
+        {%endfor%}
+</ul>
+{% else %}
+    <p>Обьявлений нет.</p>
+{% endif %}
