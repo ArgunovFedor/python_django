@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Advertisement(models.Model):
@@ -55,3 +56,38 @@ class Author(models.Model):
     class Meta:
         db_table = 'author'
         ordering = ['name']
+
+
+class News(models.Model):
+    name = models.CharField(max_length=100)
+    content = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField()
+
+    def __str__(self):
+        return self.id
+
+    class Meta:
+        db_table = 'news'
+        ordering = ['name']
+
+    def get_absolute_url(self):  # Тут мы создали новый метод
+        return reverse('news-detail', args=[str(self.id)])
+
+
+class Comments(models.Model):
+    username = models.CharField(max_length=100)
+    text = models.CharField(max_length=500)
+    news = models.ForeignKey(to='News', default=None, null=True, on_delete=models.CASCADE,
+                             related_name='news', verbose_name='Новости')
+
+    def __str__(self):
+        return self.username
+
+    class Meta:
+        db_table = 'comments'
+        ordering = ['username']
+
+    def get_absolute_url(self):  # Тут мы создали новый метод
+        return reverse('news-detail', args=[str(self.news_id)])
