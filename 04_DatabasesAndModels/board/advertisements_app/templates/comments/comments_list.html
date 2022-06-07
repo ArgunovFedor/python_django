@@ -1,0 +1,12 @@
+<body>
+    {% if comments_list %}
+        <ul>
+            {%for comment in comments_list%}
+              <li>
+                 <p>{{ comment }}</p>
+              </li>
+            {%endfor%}
+         </ul>
+  {% else %}
+      <p>Комментов нет.</p>
+  {% endif %}
