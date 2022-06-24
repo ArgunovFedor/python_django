@@ -63,10 +63,10 @@ class News(models.Model):
     content = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.id
+        return f'{self.id}. {self.name} {self.is_active}'
 
     class Meta:
         db_table = 'news'
@@ -83,7 +83,7 @@ class Comments(models.Model):
                              related_name='news', verbose_name='Новости')
 
     def __str__(self):
-        return self.username
+        return f'{self.username} {self.text} {self.news}'
 
     class Meta:
         db_table = 'comments'
