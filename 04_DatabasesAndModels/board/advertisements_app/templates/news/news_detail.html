@@ -15,7 +15,11 @@
     <a href="/comments/new/{{ news_detail.id }}"> <p>Добавить комментарий</p></a>
     {% if comment_list %}
         {% for comment in comment_list %}
-            <li>{{comment.username }} - {{comment.text }}</li>
+            {% if comment.user is None %}
+                <li>{{comment.username }} (аноним) - {{comment.text }}</li>
+            {% else %}
+                <li>{{comment.user.username }} - {{comment.text }}</li>
+            {% endif %}
         {% endfor %}
     {% else %}
           <p>Комментов нет.</p>
