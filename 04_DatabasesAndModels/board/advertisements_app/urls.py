@@ -1,8 +1,12 @@
 from django.urls import path
+from advertisements_app.views import login_view, AnotherLoginView, AnotherLogoutView
 from . import views
 
 urlpatterns = [
     path('', views.advertisement_list, name='categories_list'),
+    path('login/', login_view, name='login'),
+    path('logout/', AnotherLogoutView.as_view(), name='another_logout'),
+    path('another_login', AnotherLoginView.as_view(), name='another_login'),
     path('advertisements', views.AdvertisementListView.as_view(), name='advertisements'),
     path('advertisements/<int:pk>', views.AdvertisementDetailView.as_view(), name='advertisements-detail'),
     path('news', views.NewsListView.as_view(), name='news'),

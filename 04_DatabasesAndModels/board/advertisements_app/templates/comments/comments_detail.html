@@ -1,2 +1,4 @@
- <p>Имя пользователя - {{comments_detail.username}}</p>
- <p>Текст - {{comments_detail.text}}</p>
+{% if request.user.is_authenticated %}
+    <p>Имя пользователя - {{comments_detail.username}}</p>
+{% endif %}
+    <p>Текст - {{comments_detail.text}}</p>
