@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>Название - {{news_detail.name}}</p>
+    <p>Содержание - {{news_detail.content}}</p>
+    <p>Дата создания - {{news_detail.created_at}}</p>
+    <p>Дата редактирования - {{news_detail.updated_at}}</p>
+    <p>Флаг активности - {{news_detail.is_active}}</p>
+    <a href="{% url 'news-update' news_detail.id %}"> <p>Редактировать</p></a>
+    <a href="{% url 'news' %}"><p>Вернуться</p></a>
+    <a href="{% url 'comments-create' news_detail.id %}"> <p>Добавить комментарий</p></a>
+    {% if comment_list %}
+        {% for comment in comment_list %}
+            {% if comment.user is None %}
+                <li>{{comment.username }} (аноним) - {{comment.text }}</li>
+            {% else %}
+                <li>{{comment.user.username }} - {{comment.text }}</li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+          <p>Комментов нет.</p>
+    {% endif %}
+</html>

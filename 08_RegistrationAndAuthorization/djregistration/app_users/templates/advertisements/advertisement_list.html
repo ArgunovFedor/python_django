@@ -1,0 +1,15 @@
+<h1>Бесплатные обьявления</h1>
+
+{% if advertisement_list %}
+<ul>
+    {%for advertisement in advertisement_list%}
+    <li>
+    <a href="{% url 'advertisements-detail' advertisement.id%}">{{ advertisement.title }}</a>
+    <p>Цена - {{advertisement.price}}</p>
+    <p>Наименование рубрики - {{advertisement.type}}</p>
+    </li>
+        {%endfor%}
+</ul>
+{% else %}
+    <p>Обьявлений нет.</p>
+{% endif %}

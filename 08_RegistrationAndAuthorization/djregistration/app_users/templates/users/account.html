@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<body>
+<p>{{request.user.username}}</p>
+<p>{{request.user.email}}</p>
+<p>{{request.user.first_name}}</p>
+<p>{{request.user.last_name}}</p>
+<div>
+<a href="{% url 'main' %}">Назад </a>
+</div>
+</body>
+</html>
