@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+{% extends "base_generic.html" %}
 <head>
     <meta charset="UTF-8">
-    <title>Загрузка файла</title>
+    <title>{% trans 'Загрузка файла' %}</title>
 </head>
 <body>
 
@@ -10,7 +10,7 @@
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Загрузить файл</button>
+  <button type="submit">{% trans 'Загрузить файл' %}</button>
 </form>
 
 </body>

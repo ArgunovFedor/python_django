@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+{% extends "base_generic.html" %}
 <head>
     <meta charset="UTF-8">
-    <title>Страница</title>
+    <title>{% trans 'Страница' %}</title>
 </head>
 <body>
 
-<h2>Страница входа</h2>
+<h2>{% trans 'Страница входа' %}</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
