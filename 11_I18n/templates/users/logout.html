@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+{% extends "base_generic.html" %}
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <h2>Логаут</h2>
-    Вы успешно вышли из под вашей учетной записи!
+    <h2>{% trans 'Логаут' %}</h2>
+    {% trans 'Вы успешно вышли из под вашей учетной записи!' %}
 </body>
 </html>

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+{% extends "base_generic.html" %}
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
@@ -7,14 +7,14 @@
 <body>
 
 {% if request.user.is_authenticated %}
-    Добро пожаловать на сайт, {{ request.user.first_name }}
+    {% trans 'Добро пожаловать на сайт,'%} {{ request.user.first_name }}
 
-    <p>День рождения: {{ request.user.profile.date_of_birth }}</p>
-    <p>Город: {{ request.user.profile.city }}</p>
+    <p>{% trans 'День рождения:'%} {{ request.user.profile.date_of_birth }}</p>
+    <p>{% trans 'Город:'%} {{ request.user.profile.city }}</p>
 {% else %}
-    Вы неавторизованы на нашем сайте.
+    {% trans 'Вы неавторизованы на нашем сайте.' %}
     <a href="{% url 'login' %}">Войти</a>
 {% endif %}
-<h2>Я - главная страница</h2>
+<h2>{% trans 'Я - главная страница'%}</h2>
 </body>
 </html>
