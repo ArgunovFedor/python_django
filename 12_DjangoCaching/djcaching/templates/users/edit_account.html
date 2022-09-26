@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load i18n %}
+    <head>
+        <meta charset="UTF-8">
+        <title>{% trans 'Изменения профиля' %}</title>
+    </head>
+    <body>
+        <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{% trans 'Обновить' %}</button>
+        </form>
+    </body>
+{% endblock %}
