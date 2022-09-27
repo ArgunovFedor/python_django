@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load i18n %}
+    {% if request.user.is_authenticated %}
+        {% trans 'Добро пожаловать на сайт,'%} {{ request.user.first_name }}
+        <p>{% trans 'День рождения:'%} {{ request.user.profile.date_of_birth }}</p>
+        <p>{% trans 'Город:'%} {{ request.user.profile.city }}</p>
+        <a href="{% url 'page_with_cached_fragments' %}">{% trans 'Страница со списком магазинов:'%}</a>
+         <a href="{% url 'account' %}">{% trans 'Account:'%}</a>
+        <a href="{% url 'logout' %}">{% trans 'Выйти:'%}</a>
+    {% else %}
+        {% trans 'Вы неавторизованы на нашем сайте.' %}
+        <a href="{% url 'login' %}">{% trans 'Войти:'%}</a>
+        <a href="{% url 'register' %}">{% trans 'Зарегистрироваться:'%}</a>
+        <a href="{% url 'restore_password' %}">{% trans 'Восстановить пароль:'%}</a>
+    {% endif %}
+    <h2>{% trans 'Я - главная страница'%}</h2>
+{% endblock %}
