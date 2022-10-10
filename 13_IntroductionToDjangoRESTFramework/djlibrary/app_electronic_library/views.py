@@ -1,4 +1,5 @@
-from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, \
+    DestroyModelMixin
 from django.db.models import Count
 from app_electronic_library.models import Book, Author
 from app_electronic_library.serializers import BookSerializer, AuthorSerializer
@@ -55,6 +56,22 @@ class BooksList(ListModelMixin, CreateModelMixin, GenericAPIView):
         return self.create(request)
 
 
+class BookDetail(UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericAPIView):
+    """Представление для получения детальной информации о книге,
+       а также для его редактирования и удаления"""
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+
 class AuthorList(ListModelMixin, CreateModelMixin, GenericAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
@@ -72,3 +89,19 @@ class AuthorList(ListModelMixin, CreateModelMixin, GenericAPIView):
 
     def post(self, request):
         return self.create(request)
+
+
+class AuthorDetail(UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericAPIView):
+    """Представление для получения детальной информации об авторе,
+       а также для его редактирования и удаления"""
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)

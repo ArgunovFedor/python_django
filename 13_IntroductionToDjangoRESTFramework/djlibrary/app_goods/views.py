@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
 from app_goods.models import Item
 from app_goods.serializers import ItemSerializer
 from rest_framework import status
@@ -19,6 +19,7 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 2
 
 class ItemList(ListModelMixin, CreateModelMixin, GenericAPIView):
+    """Представление для получения списка товаров и создания самого товара."""
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     pagination_class = StandardResultsSetPagination
@@ -50,3 +51,18 @@ class ItemList(ListModelMixin, CreateModelMixin, GenericAPIView):
 #             )
 #         ]
 #         return JsonResponse(ItemSerializer(item_for_sale, many=True), safe=False)
+
+class ItemDetail(UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericAPIView):
+    """Представление для получения детальной информации о товаре,
+    а также для его редактирования и удаления"""
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
