@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Блоги</title>
+</head>
+<body>
+<a href={% url 'blog_create' %}> <p>Добавить блог</p></a>
+  {% if blog_list %}
+  <ul>
+      {%for blog in blog_list%}
+      <li>
+        <a href="{% url 'blog_detail' blog.id %}"> <p>Название - {{blog.name}}</p></a>
+        <p>Содержание - {{blog.description}}</p>
+        <p>Автор - {{blog.author}}</p>
+      </li>
+          {%endfor%}
+  </ul>
+  {% else %}
+      <p>Блогов нет.</p>
+  {% endif %}
+</body>
+</html>

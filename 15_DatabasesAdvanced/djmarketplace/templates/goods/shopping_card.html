@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+{% if shopping_carts %}
+    {% for user_cart in shopping_carts %}
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ user_cart.description }}
+        {{ user_cart.items_form }}
+        {{ user_cart.shopping_card_form.errors }}
+        {{ user_cart.shopping_card_form }}
+        <button type="submit">Обновить количество</button>
+    </form>
+{% endfor %}
+    <p><a href="{% url 'form_payment' %}">К форме оплаты</a></p>
+    <p><a href="{% url 'goods_items_list' %}">К списку товаров</a></p>
+{% else %}
+    <p>Корзина пуста</p>
+{% endif %}
+</body>
+</html>
