@@ -3,12 +3,15 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING),
-    score = models.IntegerField(default=0, verbose_name='очки'),
-    status = models.CharField(default='Новичок', max_length=100, verbose_name='статус')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    city = models.CharField(max_length=36, blank=True,verbose_name='City')
+    date_of_birth = models.DateField(null=True, blank=True, verbose_name='Date of birth')
+    status = models.CharField(max_length=100, default='Новичок', verbose_name='Status')
+    balance = models.IntegerField(default=0, verbose_name='Balance')
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
     class Meta:
         db_table = 'UserProfile'

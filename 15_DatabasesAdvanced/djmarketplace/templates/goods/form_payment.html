@@ -1,0 +1,10 @@
+{% for item in description %}
+    <p>{{ item }}</p>
+{% endfor %}
+<p>Общая сумма - {{ total_summ}}</p>
+<form method="post">
+    {% csrf_token %}
+    <td><button type="submit">Оплатить</button></td>
+</form>
+<p><a href="{% url 'shopping_cart' %}">В корзину</a></p>
+<p><a href="{% url 'goods_items_list' %}">К списку товаров</a></p>

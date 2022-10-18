@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать аккаунт</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ user_profile_form.as_p }}
+    <button type="submit">Изменить</button>
+</form>
+<p><a href="{% url 'account' %}">Назад</a></p>
+</body>
+</html>

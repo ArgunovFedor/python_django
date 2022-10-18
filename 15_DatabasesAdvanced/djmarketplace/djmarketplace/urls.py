@@ -16,7 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from djmarketplace.views import MainView
+
 urlpatterns = [
+    path('', MainView.as_view(), name='main'),
     path('admin/', admin.site.urls),
-    path('api/', include('app_blogs.urls')),
+    path('users/', include('app_users.urls')),
+    path('goods/', include('app_goods.urls'))
 ]

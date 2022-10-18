@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<body>
+<p>Никнейм: {{request.user.username}}</p>
+<p>Email: {{request.user.email}}</p>
+<p>Имя: {{request.user.first_name}}</p>
+<p>Фамилия: {{request.user.last_name}}</p>
+<p>Дата рождения: {{request.user.userprofile.date_of_birth}}</p>
+<p>Город: {{request.user.userprofile.city}}</p>
+<p>Баланс: {{request.user.userprofile.balance}}</p>
+<p>Статус: {{request.user.userprofile.status}}</p>
+<p><a href="{% url 'edit_account' %}">Редактировать</a>  </p>
+<p><a href="{% url 'replenish_balance' %}">Пополнить баланс</a></p>
+<p><a href="{% url 'main' %}">Назад </a></p>
+
+</body>
+</html>
