@@ -7,7 +7,6 @@ from app_goods.models import Item, ShoppingCart
 from app_goods.utils import add_to_shopping_card, MyCustomException, define_total_summ_and_description, \
     confirm_the_order
 
-
 @transaction.atomic
 def items_list_view(request):
     # пагинацию не реализовал намеренно
