@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_users',
-    'app_goods'
+    'app_goods',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'djmarketplace.urls'
@@ -120,3 +122,33 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers':
+        {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'level': 'DEBUG'
+            },
+            'file_info': {
+                'class': 'logging.FileHandler',
+                'filename': 'info.log',
+                'level': 'INFO'
+            },
+        },
+    'root':{
+        'handlers': ['file_info', 'console'],
+        'level': 'DEBUG',
+        'propagate': True
+    }
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type("application/javascript", ".js", True)

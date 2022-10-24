@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from djmarketplace.views import MainView
+from django.urls import include, path
 
 urlpatterns = [
     path('', MainView.as_view(), name='main'),
     path('admin/', admin.site.urls),
     path('users/', include('app_users.urls')),
-    path('goods/', include('app_goods.urls'))
+    path('goods/', include('app_goods.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]

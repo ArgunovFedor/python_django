@@ -5,9 +5,9 @@
     <title>Главная страница</title>
 </head>
 {% if request.user.is_authenticated %}
- <h3>Добро пожаловать на сайт {{request.user.first_name}}</h3>
-    <p>День рождения {{request.user.profile.date_of_birth}}</p>
-    <p>Город {{request.user.profile.city}}</p>
+ <h3>Добро пожаловать на сайт {{user.first_name}}</h3>
+    <p>День рождения {{user.userprofile.date_of_birth}}</p>
+    <p>Город {{user.userprofile.city}}</p>
     <p><a href="{% url 'account' %}">Аккаунт</a></p>
     <p><a href="{% url 'goods_items_list' %}">Список товаров</a></p>
     <p><a href="{% url 'shopping_cart' %}">Корзина</a></p>

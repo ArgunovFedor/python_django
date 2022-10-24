@@ -6,6 +6,9 @@ from django.db.models import Sum
 from app_goods.models import ShoppingCart, Item
 from app_users.models import UserProfile
 from django.db.models import F
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class MyCustomException(Exception):
@@ -82,7 +85,6 @@ def confirm_the_order(user_id: int):
     # обновляем количества товаров в магазине
     Item.objects.bulk_update(list_items_to_update, ['count'])
     buy(profile=profile, summ=summ)
-    profile.balance -= summ
     # опустошаем корзину
     ShoppingCart.objects.filter(user=user).delete()
 
@@ -92,6 +94,10 @@ def buy(profile: UserProfile, summ: decimal):
     if decimal != 'Эксперт':
         if summ > 10000:
             profile.status = 'Эксперт'
+            logger.info(f'Пользователь {profile.user} повысил свой статус - Эксперт')
         elif summ > 1000:
             profile.status = 'Продвинутый'
+            logger.info(f'Пользователь {profile.user} повысил свой статус - Продвинутый')
     profile.save()
+    logger.info(f'У пользователя {profile.user} списали с баланса {summ} рублей. Баланс теперь {profile.balance}')
+

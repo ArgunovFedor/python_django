@@ -13,6 +13,9 @@ from app_users.forms import AuthForm, RegisterForm, RestorePasswordForm, EditAcc
 from app_users.models import UserProfile
 from app_users.utils import update_user_profile, update_balance
 
+import logging
+
+logger = logging.getLogger(__name__)
 
 class AnotherLoginView(LoginView):
     template_name = 'users/login.html'
@@ -64,6 +67,7 @@ def login_view(request):
             if user:
                 if user.is_active:
                     login(request, user)
+                    logger.info(f'Пользователь {user} аутентифицировался')
                     return HttpResponseRedirect(redirect_to='/')
                 else:
                     auth_form.add_error('__all__', 'Ошибка. Учетная запись пользователя не активна')
@@ -155,6 +159,7 @@ def replenish_balance_view(request):
         if form.is_valid():
             balance = form.cleaned_data.get('balance')
             update_balance(user_id=request.user.id, balance=balance)
+            logger.info(f'Пользователь {request.user} пополнил баланс на сумму {balance}')
             return HttpResponseRedirect(reverse('account'))
         pass
     update_balance_form = UpdateBalanceForm()
