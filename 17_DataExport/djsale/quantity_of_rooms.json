@@ -1,0 +1,1 @@
+[{"model": "app_housing.quantityofrooms", "pk": 1, "fields": {"name": "Однокомнатная", "count": 1}}, {"model": "app_housing.quantityofrooms", "pk": 2, "fields": {"name": "Двухкомнатный", "count": 2}}]

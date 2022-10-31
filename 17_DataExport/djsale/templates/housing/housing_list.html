@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if housing_list %}
+
+        {% for item in housing_list %}
+            <h2>{{ item.name }}</h2>
+            <h2>{{ item.price }}</h2>
+            <h2>{{ item.type_of_house }}</h2>
+            <p><a href="{% url 'housing-item' item.id%}">Детальная информация</a></p>
+        {% endfor %}
+    {% else %}
+        <h1>Список пуст</h1>
+    {% endif %}
+</body>
+</html>

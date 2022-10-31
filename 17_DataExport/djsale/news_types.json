@@ -1,0 +1,1 @@
+[{"model": "app_housing.typeofhouse", "pk": 1, "fields": {"name": "Квартира"}}, {"model": "app_housing.typeofhouse", "pk": 2, "fields": {"name": "Частный дом"}}, {"model": "app_housing.typeofhouse", "pk": 3, "fields": {"name": "Нежилое помещение"}}]
