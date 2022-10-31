@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  {% if news_list %}
+        {% for item in news_list %}
+            <h2>{{ item.title }}</h2>
+            <h2>{{ item.text }}</h2>
+            <h2>{{ item.type }}</h2>
+            <p><a href="{% url 'news-item-item' item.id%}">Детальная информация</a></p>
+        {% endfor %}
+    {% else %}
+        <h1>Список пуст</h1>
+    {% endif %}
+</body>
+</html>
